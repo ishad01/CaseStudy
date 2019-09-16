@@ -1,6 +1,6 @@
 Greetings for the day.
 
 Task_4 Tests
-1. APIs Tests have been triggered by using Postman API testing Tool.
+1. APIs Tests have been triggered by using Postman API Automation testing Tool.
 2. Solution Script File attached with extension .json
 3. Results are captured and stored in pdf file as artifacts
