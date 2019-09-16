@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "8f7525c4-4f62-7e1d-7b89-7a9b516383cd",
+		"name": "Task_4_APITests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97e5bbe3-f57d-4ff1-94c0-fcbb1e699151",
+						"exec": [
+							"//***************************",
+							"//Author: Isha Dudeja",
+							"//Version: 01",
+							"//",
+							"//****Problem Statement*****",
+							"//Call /jokes/categories verify the status code is equal to 200 and that the",
+							"//response payload contains X number of categories",
+							"//***************************",
+							"",
+							"//Validating Status Code",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"//Counting the number/X list of Categeries = 16",
+							"let jsonData=pm.response.json();",
+							"console.log(jsonData);",
+							"var i,al;",
+							"al =jsonData.length;",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    ",
+							"  for(i=0; i<al;i++){",
+							"   pm.expect(al).to.be.eql(16);",
+							"",
+							"}",
+							"    ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0ecb0cb4-a017-4f1c-bfde-55aababd44b5",
+						"exec": [
+							"var n =pm.environment.set(\"Elements In Category\", 16);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/categories",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"categories"
+					]
+				},
+				"description": "https://api.chucknorris.io/"
+			},
+			"response": [
+				{
+					"name": "Test_01",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.chucknorris.io/jokes/categories",
+							"protocol": "https",
+							"host": [
+								"api",
+								"chucknorris",
+								"io"
+							],
+							"path": [
+								"jokes",
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "cf-ray",
+							"value": "517269cf8b4da9d6-SIN",
+							"name": "cf-ray",
+							"description": ""
+						},
+						{
+							"key": "content-encoding",
+							"value": "br",
+							"name": "content-encoding",
+							"description": ""
+						},
+						{
+							"key": "content-type",
+							"value": "application/json;charset=UTF-8",
+							"name": "content-type",
+							"description": ""
+						},
+						{
+							"key": "date",
+							"value": "Mon, 16 Sep 2019 11:13:50 GMT",
+							"name": "date",
+							"description": ""
+						},
+						{
+							"key": "expect-ct",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+							"name": "expect-ct",
+							"description": ""
+						},
+						{
+							"key": "server",
+							"value": "cloudflare",
+							"name": "server",
+							"description": ""
+						},
+						{
+							"key": "status",
+							"value": "200",
+							"name": "status",
+							"description": ""
+						},
+						{
+							"key": "via",
+							"value": "1.1 vegur",
+							"name": "via",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "[\"animal\",\"career\",\"celebrity\",\"dev\",\"explicit\",\"fashion\",\"food\",\"history\",\"money\",\"movie\",\"music\",\"political\",\"religion\",\"science\",\"sport\",\"travel\"]"
+				}
+			]
+		},
+		{
+			"name": "API_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1faa457f-415b-45e3-9762-6615d3b20f74",
+						"exec": [
+							"//***************************",
+							"//Author: Isha Dudeja",
+							"//Version: 01",
+							"//",
+							"//****Problem Statement****",
+							"//Call /jokes/1BYqNs0MSzmtl9ivZikisA, verify the value of this joke contains \"entire song“ and that the last modification was later",
+							"//than January 2016.",
+							"//Please also ensure, that the provided icon url is a valid image url",
+							"//***************************",
+							"",
+							"let jsonData = pm.response.json();",
+							"    console.log(jsonData);",
+							"    ",
+							"pm.test(\"Validating Entire Song Name\", function () {",
+							"     ",
+							"    pm.expect(jsonData.value.toString()).to.eql(pm.environment.get(\"value\"));",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Validating Last Modified Date greater than January 2016 \", function () {",
+							"     ",
+							"    ",
+							"    var d = new Date(jsonData.updated_at);",
+							"    var receievedDate= d.getTime();",
+							"    var referenceDate = new Date('2016-01-01').getTime(); ",
+							"    pm.expect(receievedDate).to.above(referenceDate);",
+							"});",
+							"",
+							"pm.test(\"Validating Valid Image\", function () {",
+							"     ",
+							"    pm.expect(jsonData.icon_url).to.eql('https://assets.chucknorris.host/img/avatar/chuck-norris.png');",
+							"   ",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f0402741-34fc-4471-87b1-134547b61dcb",
+						"exec": [
+							"pm.environment.set(\"value\", \"Chuck Norris once listened to an entire song....on mute\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/1BYqNs0MSzmtl9ivZikisA",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"1BYqNs0MSzmtl9ivZikisA"
+					]
+				},
+				"description": "Validations"
+			},
+			"response": []
+		},
+		{
+			"name": "API_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6687f39e-ec7f-4448-88f4-9ca01223ad05",
+						"exec": [
+							"//***************************",
+							"//Author: Isha Dudeja",
+							"//Version: 01",
+							"//",
+							"//****Problem Statement*****",
+							"//Call /jokes/random?category={category} with all possible categories and verify",
+							"//the category of the result matches the one in the request",
+							"//***************************",
+							"",
+							"let jsonData=pm.response.json();",
+							"console.log(typeof jsonData.categories);",
+							"pm.test(\"Category Matched\", function () {",
+							"    var n = pm.globals.get(\"categoriesArrayList\");",
+							"    var l = n.length;",
+							"   ",
+							"    pm.expect(jsonData.categories.toString()).to.be.oneOf(n);",
+							"   ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "afa4e925-ba3e-4e05-84de-4093445d7f68",
+						"exec": [
+							"var categoriesArrayList = [\"celebrity\", \"animal\",",
+							"    \"career\",",
+							"    \"celebrity\",",
+							"    \"dev\",",
+							"    \"explicit\",",
+							"    \"fashion\",",
+							"    \"food\",",
+							"    \"history\",",
+							"    \"money\",",
+							"    \"movie\",",
+							"    \"music\",",
+							"    \"political\",",
+							"    \"religion\",",
+							"    \"science\",",
+							"    \"sport\",",
+							"    \"travel\"];",
+							"pm.globals.set(\"categoriesArrayList\", categoriesArrayList);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/random?category=dev",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"random"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "dev"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8dd04db-fa46-4317-b22d-9e20c8ef6845",
+						"exec": [
+							"//***************************",
+							"//Author: Isha Dudeja",
+							"//Version: 01",
+							"//",
+							"//****Problem Statement*****",
+							"//Call / jokes/1BYqNs0MSzmtl9ivZikisAxxxxxx , calling this endpoint should",
+							"//NOT return a joke but a 404 status code (it will fail but that is what we want)",
+							"",
+							"pm.test(\"Validating Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/1BYqNs0MSzmtl9ivZikisAxxxxxx",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"1BYqNs0MSzmtl9ivZikisAxxxxxx"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
