@@ -12,8 +12,11 @@ Also , Selenium tool is used with Java backend language for automation with Mave
 Code has been tested on Chrome v76.0.3809.132 </p>
 
 <I> Note: Folder contains classfile and related supported file for loader</I>
+<I> Test Results have been captured in PDF formatted file </I>
+
 
 Task_4 Tests
 1. APIs Tests have been triggered by using Postman API Automation testing Tool.
 2. Solution Script File attached with extension .json
 3. Results are captured and stored in pdf file as artifacts
+<I> Test Results have been captured in PDF formatted file </I>
