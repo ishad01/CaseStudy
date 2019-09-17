@@ -7,8 +7,8 @@ Greetings!
 <b>Important Information</b>
 
 Task_3 Tests
-<p> I have compiled and tested code on Java version 1.8
-Also , Selenium tool is used with Java backend language for automation with Maven as Build Tool
+<p> I have compiled and tested code on Java version 1.8.
+Also , Selenium tool is used with Java backend language for automation with Maven as Build Tool.
 Code has been tested on Chrome v76.0.3809.132 </p>
 
 <I> Note: Folder contains classfile and related supported file for loader</I>
